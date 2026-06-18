@@ -3,7 +3,13 @@ require("dotenv").config();
 const express = require("express");
 const Log = require("./middleware/logger");
 
+const scheduleRoutes = require("./vehicle-scheduler-be/routes/scheduleRoutes");
+
 const app = express();
+
+app.use(express.json());
+
+app.use("/api", scheduleRoutes);
 
 app.get("/test", async (req, res) => {
   await Log(
